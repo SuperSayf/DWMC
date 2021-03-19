@@ -25,8 +25,10 @@ type
     btnSend: TButton;
     httpclient1: TIdHTTP;
     lblSuperSayf: TLabel;
+    btnAddWebhook: TButton;
     procedure btnSendClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -98,10 +100,44 @@ begin
 
 end;
 
+procedure TfrmMain.FormActivate(Sender: TObject);
+var
+  myFile: TextFile;
+  Text, sChannel: string;
+  iCount, iPos: integer;
+begin
+  iCount := 0;
+
+  if FileExists('Data.txt') then
+  begin
+    AssignFile(myFile, 'Data.txt');
+    Reset(myFile);
+  end
+  else
+  begin
+    FileCreate('Data.txt');
+    AssignFile(myFile, 'Data.txt');
+    Reset(myFile);
+  end;
+
+  while not Eof(myFile) do
+  begin
+    ReadLn(myFile, Text);
+    iPos := Pos('#', Text);
+    sChannel := Copy(Text, 1, iPos - 1);
+    cmbChannel.Items[iCount] := sChannel;
+    Inc(iCount);
+  end;
+
+  CloseFile(myFile);
+
+end;
+
 procedure TfrmMain.FormCreate(Sender: TObject);
 begin
   Left := (Screen.Width - Width) div 2;
   Top := (Screen.Height - Height) div 2;
+
 end;
 
 end.

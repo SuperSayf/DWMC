@@ -1,26 +1,8 @@
 inherited frmMain_Windows: TfrmMain_Windows
   StyleBook = StyleBook1
   DesignerMasterStyle = 0
-  inherited StyleBook1: TStyleBook [0]
-  end
-  inherited edtAvatar: TEdit [1]
-  end
-  inherited edtName: TEdit [2]
-  end
-  inherited memoMessage: TMemo [3]
+  inherited memoMessage: TMemo
     Viewport.Width = 321.000000000000000000
     Viewport.Height = 97.000000000000000000
-  end
-  inherited lblAvatar: TLabel [4]
-  end
-  inherited lblName: TLabel [5]
-  end
-  inherited lblMessage: TLabel [6]
-  end
-  inherited cmbChannel: TComboBox [7]
-  end
-  inherited btnSend: TButton [8]
-  end
-  inherited lblSuperSayf: TLabel [9]
   end
 end

@@ -3,10 +3,11 @@ object frmMain: TfrmMain
   Top = 0
   Caption = 'Discord Webhook Message Creator'
   ClientHeight = 352
-  ClientWidth = 438
+  ClientWidth = 739
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
+  OnActivate = FormActivate
   OnCreate = FormCreate
   DesignerMasterStyle = 0
   object edtAvatar: TEdit
@@ -76,10 +77,6 @@ object frmMain: TfrmMain
   end
   object cmbChannel: TComboBox
     Hint = 'Choose Channel'
-    Items.Strings = (
-      'Annoucements'
-      'News'
-      'General')
     Position.X = 80.000000000000000000
     Position.Y = 272.000000000000000000
     Size.Width = 145.000000000000000000
@@ -26733,6 +26730,12 @@ object frmMain: TfrmMain
       end>
     Left = 488
     Top = 40
+  end
+  object btnAddWebhook: TButton
+    Position.X = 568.000000000000000000
+    Position.Y = 56.000000000000000000
+    TabOrder = 13
+    Text = 'btnAddWebhook'
   end
   object httpclient1: TIdHTTP
     AllowCookies = True

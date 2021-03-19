@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
-  <Transactions>
-    <Transaction>2021/03/19 11:25:04.459,=C:\Users\danma\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2021/03/19 12:31:04.326,C:\Users\danma\Documents\Embarcadero\Studio\Projects\DWMC\Unit1.fmx=C:\Users\danma\Documents\Embarcadero\Studio\Projects\Unit1.fmx</Transaction>
-    <Transaction>2021/03/19 12:31:04.326,C:\Users\danma\Documents\Embarcadero\Studio\Projects\DWMC\Unit1.pas=C:\Users\danma\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2021/03/19 12:31:06.006,C:\Users\danma\Documents\Embarcadero\Studio\Projects\DWMC\Project1.dproj=C:\Users\danma\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
-    <Transaction>2021/03/19 14:22:53.903,C:\Users\danma\Documents\Embarcadero\Studio\Projects\DWMC\Main_U.fmx=C:\Users\danma\Documents\Embarcadero\Studio\Projects\DWMC\Unit1.fmx</Transaction>
-    <Transaction>2021/03/19 14:22:53.903,C:\Users\danma\Documents\Embarcadero\Studio\Projects\DWMC\Main_U.pas=C:\Users\danma\Documents\Embarcadero\Studio\Projects\DWMC\Unit1.pas</Transaction>
-    <Transaction>2021/03/19 14:23:15.935,C:\Users\danma\Documents\Embarcadero\Studio\Projects\DWMC\DWMC.dproj=C:\Users\danma\Documents\Embarcadero\Studio\Projects\DWMC\Project1.dproj</Transaction>
+	<Transactions>
+    <Transaction>2021/03/19 11:25:04.000.459,=C:\Users\danma\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2021/03/19 12:31:04.000.326,C:\Users\danma\Documents\Embarcadero\Studio\Projects\Unit1.fmx=C:\Users\danma\Documents\Embarcadero\Studio\Projects\DWMC\Unit1.fmx</Transaction>
+    <Transaction>2021/03/19 12:31:04.000.326,C:\Users\danma\Documents\Embarcadero\Studio\Projects\Unit1.pas=C:\Users\danma\Documents\Embarcadero\Studio\Projects\DWMC\Unit1.pas</Transaction>
+    <Transaction>2021/03/19 12:31:06.000.006,C:\Users\danma\Documents\Embarcadero\Studio\Projects\Project1.dproj=C:\Users\danma\Documents\Embarcadero\Studio\Projects\DWMC\Project1.dproj</Transaction>
+    <Transaction>2021/03/19 14:22:53.000.903,C:\Users\danma\Documents\Embarcadero\Studio\Projects\DWMC\Unit1.pas=C:\Users\danma\Documents\Embarcadero\Studio\Projects\DWMC\Main_U.pas</Transaction>
+    <Transaction>2021/03/19 14:22:53.000.903,C:\Users\danma\Documents\Embarcadero\Studio\Projects\DWMC\Unit1.fmx=C:\Users\danma\Documents\Embarcadero\Studio\Projects\DWMC\Main_U.fmx</Transaction>
+    <Transaction>2021/03/19 14:23:15.000.935,C:\Users\danma\Documents\Embarcadero\Studio\Projects\DWMC\Project1.dproj=C:\Users\danma\Documents\Embarcadero\Studio\Projects\DWMC\DWMC.dproj</Transaction>
   </Transactions>
 </BorlandProject>
