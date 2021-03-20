@@ -16,11 +16,6 @@
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
 
-[![Stargazers][stars-shield]][shttps://github.com/SuperSayf/DWMC/stargazers]
-[![Issues][issues-shield]][https://github.com/SuperSayf/DWMC/issues]
-[![GPLv3 License][license-shield]][https://github.com/SuperSayf/DWMC/blob/master/LICENSE]
-
-
 
 <!-- PROJECT LOGO -->
 <br />
@@ -49,7 +44,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](Screenshot.png)
+![Screenshot](Screenshot.png)
 
 I wanted to make a clean and simple Discord Webhook message system, so I did :)
 
@@ -61,7 +56,6 @@ Current Features:
 
 ### Built With
 
-This section should list any major frameworks that you built your project using. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
 * [Delphi](https://www.embarcadero.com/products/delphi)
 
 
