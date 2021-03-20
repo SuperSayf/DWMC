@@ -6,7 +6,7 @@ inherited frmMain_Windows: TfrmMain_Windows
     Viewport.Height = 97.000000000000000000
   end
   inherited lsbLinks: TListBox
-    Viewport.Width = 148.000000000000000000
+    Viewport.Width = 188.000000000000000000
     Viewport.Height = 140.000000000000000000
   end
 end

@@ -3,7 +3,7 @@ object frmMain: TfrmMain
   Top = 0
   Caption = 'Discord Webhook Message Creator'
   ClientHeight = 352
-  ClientWidth = 739
+  ClientWidth = 438
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
@@ -44,45 +44,45 @@ object frmMain: TfrmMain
   end
   object lblAvatar: TLabel
     StyledSettings = [Family, Style, FontColor]
-    Position.X = 8.000000000000000000
+    Position.X = 16.000000000000000000
     Position.Y = 88.000000000000000000
     Size.Width = 49.000000000000000000
     Size.Height = 17.000000000000000000
     Size.PlatformDefault = False
     TextSettings.Font.Size = 14.000000000000000000
     Text = 'Avatar:'
-    TabOrder = 6
+    TabOrder = 7
   end
   object lblName: TLabel
     StyledSettings = [Family, Style, FontColor]
-    Position.X = 8.000000000000000000
+    Position.X = 16.000000000000000000
     Position.Y = 40.000000000000000000
     Size.Width = 41.000000000000000000
     Size.Height = 17.000000000000000000
     Size.PlatformDefault = False
     TextSettings.Font.Size = 14.000000000000000000
     Text = 'Name:'
-    TabOrder = 5
+    TabOrder = 6
   end
   object lblMessage: TLabel
     StyledSettings = [Family, Style, FontColor]
     Position.X = 8.000000000000000000
-    Position.Y = 168.000000000000000000
+    Position.Y = 176.000000000000000000
     Size.Width = 65.000000000000000000
     Size.Height = 17.000000000000000000
     Size.PlatformDefault = False
     TextSettings.Font.Size = 14.000000000000000000
     Text = 'Message:'
-    TabOrder = 4
+    TabOrder = 5
   end
   object cmbChannel: TComboBox
     Hint = 'Choose Channel'
     Position.X = 80.000000000000000000
-    Position.Y = 272.000000000000000000
+    Position.Y = 296.000000000000000000
     Size.Width = 145.000000000000000000
     Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 7
+    TabOrder = 8
     ParentShowHint = False
     ShowHint = True
   end
@@ -92,7 +92,7 @@ object frmMain: TfrmMain
     Size.Width = 128.000000000000000000
     Size.Height = 49.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 8
+    TabOrder = 9
     Text = 'Send'
     ParentShowHint = False
     ShowHint = True
@@ -104,7 +104,7 @@ object frmMain: TfrmMain
     Position.Y = 328.000000000000000000
     TextSettings.Font.Size = 10.000000000000000000
     Text = 'Developed by Super Sayf'
-    TabOrder = 10
+    TabOrder = 11
   end
   object StyleBook1: TStyleBook
     Styles = <
@@ -26732,28 +26732,40 @@ object frmMain: TfrmMain
     Top = 40
   end
   object btnAddWebhook: TButton
-    Position.X = 568.000000000000000000
-    Position.Y = 56.000000000000000000
+    Position.X = 104.000000000000000000
+    Position.Y = 264.000000000000000000
     Size.Width = 97.000000000000000000
     Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 13
+    TabOrder = 14
     Text = 'Add Webhook'
     OnClick = btnAddWebhookClick
   end
   object lsbLinks: TListBox
-    Position.X = 560.000000000000000000
-    Position.Y = 192.000000000000000000
-    Size.Width = 152.000000000000000000
+    Position.X = 488.000000000000000000
+    Position.Y = 152.000000000000000000
+    Size.Width = 192.000000000000000000
     Size.Height = 144.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 16
+    TabOrder = 17
+    Visible = False
     DisableFocusEffect = True
     DefaultItemStyles.ItemStyle = ''
     DefaultItemStyles.GroupHeaderStyle = ''
     DefaultItemStyles.GroupFooterStyle = ''
-    Viewport.Width = 148.000000000000000000
+    Viewport.Width = 188.000000000000000000
     Viewport.Height = 140.000000000000000000
+  end
+  object lblWebhook: TLabel
+    StyledSettings = [Family, Style, FontColor]
+    Position.X = 8.000000000000000000
+    Position.Y = 296.000000000000000000
+    Size.Width = 65.000000000000000000
+    Size.Height = 17.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.Font.Size = 14.000000000000000000
+    Text = 'Webhook:'
+    TabOrder = 4
   end
   object httpclient1: TIdHTTP
     AllowCookies = True

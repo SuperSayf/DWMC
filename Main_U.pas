@@ -28,10 +28,12 @@ type
     lblSuperSayf: TLabel;
     btnAddWebhook: TButton;
     lsbLinks: TListBox;
+    lblWebhook: TLabel;
     procedure btnSendClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure btnAddWebhookClick(Sender: TObject);
+    procedure ResetLinks;
   private
     { Private declarations }
   public
@@ -48,36 +50,62 @@ implementation
 
 procedure TfrmMain.btnAddWebhookClick(Sender: TObject);
 var
-  sChannel, sLink: String;
+  sChannelAdd, sChannel, sLinkAdd: String;
   myFile: TextFile;
   text: string;
+  iPos: integer;
 begin
 
-  sChannel := InputBox('DWMC', 'Please enter a name for the Webhook', '');
+  sChannelAdd := InputBox('DWMC', 'Please enter a name for the Webhook', '');
 
-  if length(sChannel) > 1 then
+  if length(sChannelAdd) > 1 then
   begin
 
-    if ContainsText(sChannel, '#') then
+    if AnsiContainsText(sChannelAdd, '#') then
     begin
       ShowMessage('Please do not use a # in your webhook name');
+      ResetLinks;
     end
     else
     begin
 
-      sLink := InputBox('DWMC', 'Please enter the webhook link', '');
+      sLinkAdd := InputBox('DWMC', 'Please enter the webhook link', '');
 
-      AssignFile(myFile, 'Test.txt');
-      ReWrite(myFile);
-      WriteLn(myFile, sChannel + '#' + sLink);
-      CloseFile(myFile);
+      if length(sLinkAdd) > 5 then
+      begin
+        AssignFile(myFile, 'Data.txt');
+        Append(myFile);
+        WriteLn(myFile, sChannelAdd + '#' + sLinkAdd);
 
+        cmbChannel.Items.Clear;
+        lsbLinks.Items.Clear;
+
+        Reset(myFile);
+        while not Eof(myFile) do
+        begin
+          ReadLn(myFile, text);
+          iPos := Pos('#', text);
+          sChannel := Copy(text, 1, iPos - 1);
+          cmbChannel.Items.Add(sChannel);
+          Delete(text, 1, iPos);
+          lsbLinks.Items.Add(text);
+        end;
+        CloseFile(myFile);
+        ResetLinks;
+      end
+      else
+      begin
+        ShowMessage('Please enter a link');
+        ResetLinks;
+      end;
+      ResetLinks;
     end;
 
   end
   else
   begin
-    ShowMessage('Please enter a name');
+    ShowMessage('Please enter a valid name');
+    ResetLinks;
   end;
 
 end;
@@ -86,9 +114,9 @@ procedure TfrmMain.btnSendClick(Sender: TObject);
 var
   sMessage, sUsername, sAvatar, sChannel: String;
   params: TIdMultipartFormDataStream;
-  iIndex: Integer;
+  iIndex, iSelected: integer;
 begin
-
+  iSelected := cmbChannel.ItemIndex;
   sMessage := memoMessage.text;
   sUsername := edtName.text;
   sAvatar := edtAvatar.text;
@@ -99,42 +127,50 @@ begin
       'https://e7.pngegg.com/pngimages/888/805/png-clipart-discord-computer-icons-android-icons-combat-arena-android-game-smiley-thumbnail.png';
   end;
 
-  iIndex := cmbChannel.ItemIndex;
-  lsbLinks.Index := iIndex;
-  sChannel := lsbLinks.Items[lsbLinks.Index];
-
-  if (cmbChannel.ItemIndex <> -1) then
+  if memoMessage.text = '' then
   begin
-    params := TIdMultipartFormDataStream.Create;
-    try
-      params.AddFormField('content', sMessage);
-      params.AddFormField('username', sUsername);
-      params.AddFormField('avatar_url', sAvatar);
-
-      httpclient1.Request.UserAgent :=
-        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Safari/537.36';
-      httpclient1.Post(sChannel, params);
-    finally
-      params.Free;
-    end;
-    memoMessage.ClearContent;
-    memoMessage.SetFocus;
+    ShowMessage('Please enter a message');
   end
   else
   begin
-    ShowMessage('Please choose a channel to send a message');
-    cmbChannel.SetFocus;
+
+    iIndex := cmbChannel.ItemIndex;
+    lsbLinks.Index := iIndex;
+    sChannel := lsbLinks.Items[lsbLinks.Index];
+
+    if (cmbChannel.ItemIndex <> -1) then
+    begin
+      params := TIdMultipartFormDataStream.Create;
+      try
+        params.AddFormField('content', sMessage);
+        params.AddFormField('username', sUsername);
+        params.AddFormField('avatar_url', sAvatar);
+
+        httpclient1.Request.UserAgent :=
+          'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Safari/537.36';
+        httpclient1.Post(sChannel, params);
+      finally
+        params.Free;
+      end;
+      memoMessage.ClearContent;
+      memoMessage.SetFocus;
+    end
+    else
+    begin
+      ShowMessage('Please choose a channel to send a message');
+      cmbChannel.SetFocus;
+    end;
   end;
 
+  ResetLinks;
 end;
 
 procedure TfrmMain.FormActivate(Sender: TObject);
 var
   myFile: TextFile;
   text, sChannel, sLink: string;
-  iCount, iPos: Integer;
+  iPos: integer;
 begin
-  iCount := 0;
 
   if FileExists('Data.txt') then
   begin
@@ -158,7 +194,6 @@ begin
       cmbChannel.Items.Add(sChannel);
       Delete(text, 1, iPos);
       lsbLinks.Items.Add(text);
-      Inc(iCount);
     end;
   end;
 
@@ -171,6 +206,29 @@ begin
   Left := (Screen.Width - Width) div 2;
   Top := (Screen.Height - Height) div 2;
 
+end;
+
+procedure TfrmMain.ResetLinks;
+var
+  myFile: TextFile;
+  text, sChannel: string;
+  iPos, iCount: integer;
+begin
+  cmbChannel.Items.Clear;
+  lsbLinks.Items.Clear;
+  AssignFile(myFile, 'Data.txt');
+  Reset(myFile);
+  while not Eof(myFile) do
+  begin
+    ReadLn(myFile, text);
+    iPos := Pos('#', text);
+    sChannel := Copy(text, 1, iPos - 1);
+    cmbChannel.Items.Add(sChannel);
+    Delete(text, 1, iPos);
+    lsbLinks.Items.Add(text);
+    Inc(iCount);
+  end;
+  CloseFile(myFile);
 end;
 
 end.
