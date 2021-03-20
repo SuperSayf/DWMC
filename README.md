@@ -49,7 +49,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://i.ibb.co/MBWnMwX/DWMC-Nv-ABPRt-C9w.png)
+[![Product Name Screen Shot][product-screenshot]](Screenshot.png)
 
 I wanted to make a clean and simple Discord Webhook message system, so I did :)
 
