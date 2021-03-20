@@ -10,7 +10,8 @@ uses
   FMX.Maps, FMX.Colors, FMX.Edit, FMX.ScrollBox, FMX.Memo, FMX.ListBox,
   IdMultipartFormData,
   System.Net.URLClient, System.Net.HttpClient, System.Net.HttpClientComponent,
-  IdBaseComponent, IdComponent, IdTCPConnection, IdTCPClient, IdHTTP;
+  IdBaseComponent, IdComponent, IdTCPConnection, IdTCPClient, IdHTTP,
+  FMX.Layouts, StrUtils;
 
 type
   TfrmMain = class(TForm)
@@ -26,9 +27,11 @@ type
     httpclient1: TIdHTTP;
     lblSuperSayf: TLabel;
     btnAddWebhook: TButton;
+    lsbLinks: TListBox;
     procedure btnSendClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormActivate(Sender: TObject);
+    procedure btnAddWebhookClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -43,15 +46,52 @@ implementation
 {$R *.fmx}
 {$R *.Windows.fmx MSWINDOWS}
 
+procedure TfrmMain.btnAddWebhookClick(Sender: TObject);
+var
+  sChannel, sLink: String;
+  myFile: TextFile;
+  text: string;
+begin
+
+  sChannel := InputBox('DWMC', 'Please enter a name for the Webhook', '');
+
+  if length(sChannel) > 1 then
+  begin
+
+    if ContainsText(sChannel, '#') then
+    begin
+      ShowMessage('Please do not use a # in your webhook name');
+    end
+    else
+    begin
+
+      sLink := InputBox('DWMC', 'Please enter the webhook link', '');
+
+      AssignFile(myFile, 'Test.txt');
+      ReWrite(myFile);
+      WriteLn(myFile, sChannel + '#' + sLink);
+      CloseFile(myFile);
+
+    end;
+
+  end
+  else
+  begin
+    ShowMessage('Please enter a name');
+  end;
+
+end;
+
 procedure TfrmMain.btnSendClick(Sender: TObject);
 var
   sMessage, sUsername, sAvatar, sChannel: String;
   params: TIdMultipartFormDataStream;
+  iIndex: Integer;
 begin
 
-  sMessage := memoMessage.Text;
-  sUsername := edtName.Text;
-  sAvatar := edtAvatar.Text;
+  sMessage := memoMessage.text;
+  sUsername := edtName.text;
+  sAvatar := edtAvatar.text;
 
   if sAvatar = '' then
   begin
@@ -59,21 +99,9 @@ begin
       'https://e7.pngegg.com/pngimages/888/805/png-clipart-discord-computer-icons-android-icons-combat-arena-android-game-smiley-thumbnail.png';
   end;
 
-  case cmbChannel.ItemIndex of
-
-    0:
-      sChannel :=
-        'https://discord.com/api/webhooks/822219858383994963/uNkzI33Lzissz7-cYq2n-41TrutTc5Q49B6eNGqaYJtHn5k-1x2N7R23E4NFRdXszMuq';
-
-    1:
-      sChannel :=
-        'https://discord.com/api/webhooks/822219948985942077/df9Q4vL6Lvd___qW0lNqsJ-zzdg5Nw2P5xLqOAE5XqgwmUSCULIVGpUMuMiY3S18zeVP';
-
-    2:
-      sChannel :=
-        'https://discord.com/api/webhooks/822206833921228850/oBzUaxlxA9wjy2hPzkekBP8EXGEs1RprbLqma_boTsgH3HrapDq_gGu_mwGZxZgLeRs1'
-
-  end;
+  iIndex := cmbChannel.ItemIndex;
+  lsbLinks.Index := iIndex;
+  sChannel := lsbLinks.Items[lsbLinks.Index];
 
   if (cmbChannel.ItemIndex <> -1) then
   begin
@@ -103,8 +131,8 @@ end;
 procedure TfrmMain.FormActivate(Sender: TObject);
 var
   myFile: TextFile;
-  Text, sChannel: string;
-  iCount, iPos: integer;
+  text, sChannel, sLink: string;
+  iCount, iPos: Integer;
 begin
   iCount := 0;
 
@@ -120,13 +148,18 @@ begin
     Reset(myFile);
   end;
 
-  while not Eof(myFile) do
+  if FileSize(myFile) <> 0 then
   begin
-    ReadLn(myFile, Text);
-    iPos := Pos('#', Text);
-    sChannel := Copy(Text, 1, iPos - 1);
-    cmbChannel.Items[iCount] := sChannel;
-    Inc(iCount);
+    while not Eof(myFile) do
+    begin
+      ReadLn(myFile, text);
+      iPos := Pos('#', text);
+      sChannel := Copy(text, 1, iPos - 1);
+      cmbChannel.Items.Add(sChannel);
+      Delete(text, 1, iPos);
+      lsbLinks.Items.Add(text);
+      Inc(iCount);
+    end;
   end;
 
   CloseFile(myFile);

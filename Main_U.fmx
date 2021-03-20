@@ -26734,8 +26734,26 @@ object frmMain: TfrmMain
   object btnAddWebhook: TButton
     Position.X = 568.000000000000000000
     Position.Y = 56.000000000000000000
+    Size.Width = 97.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
     TabOrder = 13
-    Text = 'btnAddWebhook'
+    Text = 'Add Webhook'
+    OnClick = btnAddWebhookClick
+  end
+  object lsbLinks: TListBox
+    Position.X = 560.000000000000000000
+    Position.Y = 192.000000000000000000
+    Size.Width = 152.000000000000000000
+    Size.Height = 144.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 16
+    DisableFocusEffect = True
+    DefaultItemStyles.ItemStyle = ''
+    DefaultItemStyles.GroupHeaderStyle = ''
+    DefaultItemStyles.GroupFooterStyle = ''
+    Viewport.Width = 148.000000000000000000
+    Viewport.Height = 140.000000000000000000
   end
   object httpclient1: TIdHTTP
     AllowCookies = True
