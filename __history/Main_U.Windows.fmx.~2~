@@ -1,0 +1,8 @@
+inherited frmMain_Windows: TfrmMain_Windows
+  StyleBook = StyleBook1
+  DesignerMasterStyle = 0
+  inherited memoMessage: TMemo
+    Viewport.Width = 321.000000000000000000
+    Viewport.Height = 97.000000000000000000
+  end
+end
